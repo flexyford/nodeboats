@@ -20,12 +20,13 @@
       space: false
     };
 
+    var DEFAULT_ANGLE = 0;
     var THROTTLE_MAX = 255;
     var THROTTLE_DIFF = THROTTLE_MAX / 2;
     var ANGLE_MAX = Math.PI / 2; // 90 degrees
     var ANGLE_DIFF = ANGLE_MAX / 5;
     var throttle = 0;
-    var angle = 0;
+    var angle = DEFAULT_ANGLE;
 
     function onload() {
       function process() {
@@ -52,7 +53,7 @@
         }
         if (state.space) {
           throttle = 0;
-          angle = 0;
+          angle = DEFAULT_ANGLE;
         }
 
         var portSpeed = throttle;
