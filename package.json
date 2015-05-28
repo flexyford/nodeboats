@@ -18,5 +18,9 @@
   "bugs": {
     "url": "https://github.com/flexyford/nodeboats/issues"
   },
-  "homepage": "https://github.com/flexyford/nodeboats"
+  "homepage": "https://github.com/flexyford/nodeboats",
+  "dependencies": {
+    "johnny-five": "^0.8.76",
+    "spark-io": "^0.6.1"
+  }
 }
