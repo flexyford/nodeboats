@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/flexyford/nodeboats",
   "dependencies": {
+    "heya": "^1.2.0",
     "johnny-five": "^0.8.76",
     "spark-io": "^0.6.1"
   }
