@@ -14,38 +14,18 @@ MotorBot.prototype.connect = function(callback) {
 
 
 MotorBot.prototype.move = function move(x, y) {
-  var leftSpeed;
-  var rightSpeed;
-  var normalizedAngle = 2 * Math.atan(y / x) / (Math.PI / 2);
-  if (Math.abs(x) < 0.1 && Math.abs(y) < 0.1) {
-    leftSpeed = 0;
-    rightSpeed = 0;
-  } else if (x >= 0 && y >= 0) {
-    rightSpeed = 1;
-    leftSpeed = 1 - normalizedAngle;
-  } else if (x < 0 && y >= 0) {
-    rightSpeed = -1 - normalizedAngle;
-    leftSpeed = 1;
-  } else if (x < 0 && y < 0) {
-    rightSpeed = -1;
-    leftSpeed = 1 - normalizedAngle;
-  } else if (x >= 0 && y < 0) {
-    rightSpeed = 1 + normalizedAngle;
-    leftSpeed = -1;
+  var throttle = x, angle = y;
+
+  var portSpeed = throttle;
+  var starboardSpeed = throttle;
+
+  if (angle < 0) {
+    portSpeed *= Math.cos(-angle);
+  } else if (angle > 0) {
+    starboardSpeed *= Math.cos(angle);
   }
 
-  leftSpeed *= 255;
-  rightSpeed *= 255;
-
-  console.log("speed", leftSpeed, rightSpeed);
-  if (leftSpeed < 1) {
-    this.portMotor.reverse(-leftSpeed);
-  } else {
-    this.portMotor.forward(leftSpeed);
-  }
-  if (rightSpeed < 1) {
-    this.starboardMotor.forward(-rightSpeed);
-  } else {
-    this.starboardMotor.reverse(rightSpeed);
-  }
+  console.log("portSpeed", portSpeed, "starboardSpeed", starboardSpeed);
+  this.portMotor.start(portSpeed);
+  this.starboardMotor.start(starboardSpeed);
 };

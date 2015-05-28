@@ -4,7 +4,9 @@
 var Spark = require("spark-io");
 var five = require("johnny-five");
 var heya = require("heya");
+
 var MotorBot = require("./motor-bot");
+var WebKeyboard = require("./web-keyboard");
 
 var board = new five.Board({
   io: new Spark({
@@ -31,7 +33,7 @@ board.on("ready", function() {
     });
 
     heya.create({
-      controller: new heya.controllers.WebKeyboard(),
+      controller: new WebKeyboard(),
       driver: new MotorBot({
             board: board,
             portMotor: portMotor,

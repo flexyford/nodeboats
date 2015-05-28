@@ -1,0 +1,86 @@
+<html>
+  <head>
+    <script>
+    var map = {
+      "Up": "up",
+      "U+0057": "up",
+      "Down": "down",
+      "U+0053": "down",
+      "Right": "right",
+      "U+0044": "right",
+      "Left": "left",
+      "U+0041": "left",
+      "U+0020": "space"
+    };
+    var state = {
+      up: false,
+      right: false,
+      down: false,
+      left: false,
+      space: false
+    };
+
+    var THROTTLE_MAX = 255;
+    var THROTTLE_DIFF = THROTTLE_MAX;
+    var ANGLE_MAX = Math.PI / 2; // 90 degrees
+    var ANGLE_DIFF = ANGLE_MAX / 5;
+    var throttle = 0;
+    var angle = 0;
+
+    function onload() {
+      function process() {
+        var key = 0;
+        if (state.up) {
+          if (throttle < THROTTLE_MAX) {
+            throttle += THROTTLE_DIFF;
+          }
+        }
+        if (state.right) {
+          if (angle < ANGLE_MAX) {
+            angle += ANGLE_DIFF;
+          }
+        }
+        if (state.down) {
+          if (throttle > -THROTTLE_MAX) {
+            throttle -= THROTTLE_DIFF;
+          }
+        }
+        if (state.left) {
+          if (angle > -ANGLE_MAX) {
+            angle -= ANGLE_DIFF;
+          }
+        }
+        if (state.space) {
+          throttle = 0;
+          angle = 0;
+        }
+
+        var xhr = new XMLHttpRequest();
+        xhr.open("get", window.location.protocol + "//" + window.location.host + "/move/" + throttle + "/" + angle);
+        xhr.send();
+        document.getElementById("throttle").innerHTML = throttle;
+        document.getElementById("angle").innerHTML = angle;
+      };
+
+      window.onkeyup = function (e) {
+        var key = e.keyIdentifier;
+        if (state[map[key]] == true) {
+          state[map[key]] = false;
+          process();
+        }
+      };
+      window.onkeydown = function (e) {
+        var key = e.keyIdentifier;
+        if (state[map[key]] == false) {
+          state[map[key]] = true;
+          process();
+        }
+      };
+    }
+    </script>
+  </head>
+  <body onload="onload()">
+    Throttle: <div id="throttle">0</div><br/>
+    Angle: <div id="angle">0</div>
+  </body>
+</html>
