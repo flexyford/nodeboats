@@ -1,0 +1,22 @@
+{
+  "name": "nodeboat-asdf",
+  "version": "1.0.0",
+  "description": "JSConf NodeBoats project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/flexyford/nodeboats.git"
+  },
+  "keywords": [
+    "nodeboat"
+  ],
+  "author": "Team ASDF",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/flexyford/nodeboats/issues"
+  },
+  "homepage": "https://github.com/flexyford/nodeboats"
+}
