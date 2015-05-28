@@ -1,0 +1,2 @@
+# nodeboats
+JSConf NodeBoats project
