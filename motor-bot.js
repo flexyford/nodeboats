@@ -14,16 +14,8 @@ MotorBot.prototype.connect = function(callback) {
 
 
 MotorBot.prototype.move = function move(x, y) {
-  var throttle = x, angle = y;
-
-  var portSpeed = throttle;
-  var starboardSpeed = throttle;
-
-  if (angle < 0) {
-    portSpeed *= Math.cos(-angle);
-  } else if (angle > 0) {
-    starboardSpeed *= Math.cos(angle);
-  }
+  var portSpeed = x;
+  var starboardSpeed = y;
 
   console.log("portSpeed", portSpeed, "starboardSpeed", starboardSpeed);
   this.portMotor.start(portSpeed);

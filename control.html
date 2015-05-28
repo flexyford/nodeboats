@@ -55,8 +55,16 @@
           angle = 0;
         }
 
+        var portSpeed = throttle;
+        var starboardSpeed = throttle;
+        if (angle < 0) {
+          portSpeed *= Math.cos(-angle);
+        } else if (angle > 0) {
+          starboardSpeed *= Math.cos(angle);
+        }
+
         var xhr = new XMLHttpRequest();
-        xhr.open("get", window.location.protocol + "//" + window.location.host + "/move/" + throttle + "/" + angle);
+        xhr.open("get", window.location.protocol + "//" + window.location.host + "/move/" + portSpeed + "/" + starboardSpeed);
         xhr.send();
         document.getElementById("throttle").innerHTML = throttle;
         document.getElementById("angle").innerHTML = angle;

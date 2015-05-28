@@ -39,14 +39,12 @@ WebKeyboard.prototype.connect = function connect(cb) {
     var url = require('url').parse(req.url);
     var match = url.path.match(/^\/move\/([^\/]+)\/([^\/]+)$/);
     if (match) {
-      var throttle = match[1];
-      var angle = match[2];
-
-      console.log("xxx", throttle, angle);
+      var portSpeed = match[1];
+      var starboardSpeed = match[2];
 
       this.emit('move', {
-        x: throttle,
-        y: angle
+        x: portSpeed,
+        y: starboardSpeed
       });
       res.end();
     } else {
