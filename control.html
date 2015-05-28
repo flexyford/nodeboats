@@ -68,6 +68,8 @@
         xhr.send();
         document.getElementById("throttle").innerHTML = throttle;
         document.getElementById("angle").innerHTML = angle;
+        document.getElementById("portSpeed").style.height = THROTTLE_MAX - portSpeed + "px";
+        document.getElementById("starboardSpeed").style.height = THROTTLE_MAX - starboardSpeed + "px";
       };
 
       window.onkeyup = function (e) {
@@ -90,5 +92,12 @@
   <body onload="onload()">
     Throttle: <div id="throttle">0</div><br/>
     Angle: <div id="angle">0</div>
+
+    <div style="float: left; height: 255px; width: 20px; margin-right: 20px; background: #1A6BB9">
+      <div id="portSpeed" style="float: left; height: 255px; width: 20px; background: #EEE"></div>
+    </div>
+    <div style="float: left; height: 255px; width: 20px; margin-right: 20px; background: #1A6BB9">
+      <div id="starboardSpeed" style="float: left; height: 255px; width: 20px; background: #EEE"></div>
+    </div>
   </body>
 </html>
