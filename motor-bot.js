@@ -19,12 +19,12 @@ MotorBot.prototype.move = function move(x, y) {
 
   console.log("portSpeed", portSpeed, "starboardSpeed", starboardSpeed);
   if (portSpeed >= 0) {
-    this.portMotor.start(portSpeed);
+    this.portMotor.forward(portSpeed);
   } else {
     this.portMotor.reverse(-portSpeed);
   }
   if (starboardSpeed >= 0) {
-      this.starboardMotor.start(starboardSpeed);
+      this.starboardMotor.forward(starboardSpeed);
   } else {
       this.starboardMotor.reverse(-starboardSpeed);
   }
